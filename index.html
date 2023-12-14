@@ -19,23 +19,14 @@
             padding: 0;
             font-family: 'Lato', sans-serif;
             background-color: #f8f9fa; /* Fondo más claro */
-            color: #495057; /* Texto más oscuro */
+            color: #ffffff; /* Texto más oscuro */
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-y: hidden; /* Evita el desplazamiento vertical */
         }
 
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: center; /* Centro el contenido */
-            align-items: center;
-            padding: 10px;
-            box-sizing: border-box;
-            background-color: #343a40; /* Gris oscuro */
-            color: #ffffff; /* Texto en blanco */
-        }
+
 
         #periodo-container {
             display: flex;
@@ -47,7 +38,7 @@
             font-size: 1.5em; /* Tamaño de fuente más grande */
             font-weight: bold;
             margin-right: 20px;
-            color: #ea5455; /* Rojo coral */
+            color: #362a68; /* Rojo coral */
             animation: pulse 2s infinite; /* Animación que se repite infinitamente */
         }
 
@@ -69,20 +60,55 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s; /* Agregamos transición al color de fondo y texto */
+            border: 2px solid #362a68; /* Borde rojo medio oscuro */
+            border-radius: 5px; /* Esquinas redondeadas */
         }
 
         #anterior {
             order: 1;
-            background-color: #dc3545; /* Rojo más brillante */
-            border: none;
-            color: #ffffff; /* Texto en blanco */
+            background-color: #ffffff; /* Fondo blanco */
+            color: #362a68; /* Texto en rojo medio oscuro */
+            animation: fadeInLeft 1s; /* Animación de fade in desde la izquierda */
         }
 
         #avanzar {
             order: 2;
-            background-color: #28a745; /* Verde más brillante */
-            border: none;
+            background-color: #ffffff; /* Fondo blanco */
+            color: #362a68; /* Texto en rojo medio oscuro */
+            animation: fadeInRight 1s; /* Animación de fade in desde la derecha */
+        }
+
+        /* Cambio de color al pasar el mouse sobre los botones */
+        #anterior:hover {
+            background-color: #362a68; /* Rojo medio oscuro al pasar el mouse */
             color: #ffffff; /* Texto en blanco */
+        }
+
+        #avanzar:hover {
+            background-color: #362a68; /* Rojo medio oscuro al pasar el mouse */
+            color: #ffffff; /* Texto en blanco */
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         #map-container {
@@ -103,15 +129,15 @@
 
 <body>
 
-    <header></header>
+    <header>
+        Explorador de Mapas
+    </header>
 
     <div id="periodo-container">
         <div id="periodo-display" class="h4">Período Actual: <span
                 id="numero-periodo">1</span></div>
-        <button onclick="retrocederPeriodo()" id="anterior"
-            class="btn btn-danger btn-lg animate__animated animate__fadeInLeft">← Anterior</button>
-        <button onclick="avanzarPeriodo()" id="avanzar"
-            class="btn btn-success btn-lg animate__animated animate__fadeInRight">Siguiente →</button>
+        <button onclick="retrocederPeriodo()" id="anterior">← Anterior</button>
+        <button onclick="avanzarPeriodo()" id="avanzar">Siguiente →</button>
     </div>
 
     <div id="map-container">
