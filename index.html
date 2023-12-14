@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Mapas</title>
+
+    <!-- Enlace a Google Fonts - Lato -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+
+    <!-- Enlaces a Bootstrap CSS y animate.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #f8f9fa; /* Fondo más claro */
+            color: #495057; /* Texto más oscuro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: hidden; /* Evita el desplazamiento vertical */
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centro el contenido */
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #343a40; /* Gris oscuro */
+            color: #ffffff; /* Texto en blanco */
+        }
+
+        #periodo-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px; /* Espaciado superior para separar del título */
+        }
+
+        #periodo-display {
+            font-size: 1.5em; /* Tamaño de fuente más grande */
+            font-weight: bold;
+            margin-right: 20px;
+            color: #ea5455; /* Rojo coral */
+            animation: pulse 2s infinite; /* Animación que se repite infinitamente */
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s; /* Agregamos transición al color de fondo y texto */
+        }
+
+        #anterior {
+            order: 1;
+            background-color: #dc3545; /* Rojo más brillante */
+            border: none;
+            color: #ffffff; /* Texto en blanco */
+        }
+
+        #avanzar {
+            order: 2;
+            background-color: #28a745; /* Verde más brillante */
+            border: none;
+            color: #ffffff; /* Texto en blanco */
+        }
+
+        #map-container {
+            text-align: center;
+            margin: 10px auto; /* Espaciado inferior para separar del mapa */
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #map-iframe {
+            width: 95vw; /* Se ajusta al 95% del ancho de la ventana */
+            max-width: 1200px; /* Ancho máximo para evitar que el mapa sea demasiado ancho */
+            height: 80vh; /* Altura ajustada para mejorar la visualización */
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header></header>
+
+    <div id="periodo-container">
+        <div id="periodo-display" class="h4">Período Actual: <span
+                id="numero-periodo">1</span></div>
+        <button onclick="retrocederPeriodo()" id="anterior"
+            class="btn btn-danger btn-lg animate__animated animate__fadeInLeft">← Anterior</button>
+        <button onclick="avanzarPeriodo()" id="avanzar"
+            class="btn btn-success btn-lg animate__animated animate__fadeInRight">Siguiente →</button>
+    </div>
+
+    <div id="map-container">
+        <iframe id="map-iframe" src="mapa1.html"></iframe>
+    </div>
+
+    <script>
+        var periodoActual = 1;
+        var totalMapas = 3;
+
+        function retrocederPeriodo() {
+            periodoActual = Math.max(1, periodoActual - 1);
+            actualizarMapa();
+        }
+
+        function avanzarPeriodo() {
+            periodoActual = Math.min(totalMapas, periodoActual + 1);
+            actualizarMapa();
+        }
+
+        function actualizarMapa() {
+            document.getElementById("map-container").style.opacity = 0;
+
+            setTimeout(function () {
+                var iframe = document.getElementById("map-iframe");
+                iframe.src = "mapa" + periodoActual + ".html";
+                document.getElementById("numero-periodo").innerText = periodoActual;
+                document.getElementById("map-container").style.opacity = 1;
+            }, 500);
+        }
+    </script>
+
+</body>
+
+</html>
