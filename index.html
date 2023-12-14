@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explorador de Mapas</title>
+    <title>Prácticas Metodologícas en el Cerro de Montevideo</title>
 
     <!-- Enlace a Google Fonts - Lato -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
@@ -19,14 +19,23 @@
             padding: 0;
             font-family: 'Lato', sans-serif;
             background-color: #f8f9fa; /* Fondo más claro */
-            color: #ffffff; /* Texto más oscuro */
+            color: #236759; /* Texto más oscuro */
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-y: hidden; /* Evita el desplazamiento vertical */
         }
 
-
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centro el contenido */
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #362a68; /* Púrpura oscuro */
+            color: #ffffff; /* Texto en blanco */
+        }
 
         #periodo-container {
             display: flex;
@@ -118,8 +127,8 @@
         }
 
         #map-iframe {
-            width: 95vw; /* Se ajusta al 95% del ancho de la ventana */
-            max-width: 1200px; /* Ancho máximo para evitar que el mapa sea demasiado ancho */
+            width: 100vw; /* Se ajusta al 100% del ancho de la ventana */
+            max-width: 1400px; /* Ancho máximo para evitar que el mapa sea demasiado ancho */
             height: 80vh; /* Altura ajustada para mejorar la visualización */
             border: none;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -130,7 +139,7 @@
 <body>
 
     <header>
-        Explorador de Mapas
+        Evolución de la tasa de respuesta
     </header>
 
     <div id="periodo-container">
